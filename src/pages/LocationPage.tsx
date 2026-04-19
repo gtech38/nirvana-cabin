@@ -49,7 +49,7 @@ export default function LocationPage() {
       </div>
 
       {/* Getting there + map */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 sm:py-24 lg:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
           <div>
@@ -91,10 +91,10 @@ export default function LocationPage() {
           {/* Map placeholder */}
           <div>
             <div
-              className="overflow-hidden flex items-center justify-center"
-              style={{ height: '480px', backgroundColor: '#E0D9CE' }}
+              className="overflow-hidden flex items-center justify-center h-[360px] sm:h-[420px] lg:h-[480px]"
+              style={{ backgroundColor: '#E0D9CE' }}
             >
-              <div className="text-center px-10">
+              <div className="text-center px-6 sm:px-10">
                 <svg className="w-10 h-10 mx-auto mb-4" style={{ color: '#B5A898' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -133,7 +133,7 @@ export default function LocationPage() {
       </div>
 
       {/* Attractions */}
-      <div style={{ backgroundColor: '#1A2B22' }} className="py-24 lg:py-32">
+      <div style={{ backgroundColor: '#1A2B22' }} className="py-20 sm:py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="mb-14">
             <p className="text-xs tracking-[0.22em] uppercase font-medium text-[#B8965A] mb-3">Nearby</p>
@@ -163,27 +163,27 @@ export default function LocationPage() {
       </div>
 
       {/* Contact CTA */}
-      <div className="max-w-3xl mx-auto px-6 py-24 text-center">
+      <div className="max-w-3xl mx-auto px-6 py-20 sm:py-24 text-center">
         <div className="w-10 h-px bg-[#B8965A] mx-auto mb-10" />
         <h2
           className="font-display font-light text-[#1A2B22] mb-4"
-          style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}
+          style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}
         >
           Questions about the area?
         </h2>
         <p className="text-sm text-[#7A6B55] font-light mb-10 leading-relaxed">
           We're happy to share local dining tips, hidden hiking trails, and seasonal recommendations.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <a
             href={`tel:${property.phone}`}
-            className="px-10 py-4 bg-[#1A2B22] text-white text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#2C4A38] transition-colors"
+            className="px-8 sm:px-10 py-4 bg-[#1A2B22] text-white text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#2C4A38] transition-colors text-center"
           >
             {property.phone}
           </a>
           <Link
             to="/book"
-            className="px-10 py-4 border border-[#1A2B22] text-[#1A2B22] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#1A2B22] hover:text-white transition-colors"
+            className="px-8 sm:px-10 py-4 border border-[#1A2B22] text-[#1A2B22] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#1A2B22] hover:text-white transition-colors text-center"
           >
             Reserve Your Stay
           </Link>

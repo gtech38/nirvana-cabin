@@ -105,9 +105,9 @@ export default function ReviewsPage() {
               { label: 'Accuracy', score: '5.0' },
               { label: 'Value', score: '5.0' },
             ].map(({ label, score }) => (
-              <div key={label} className="text-center py-8 px-4" style={{ backgroundColor: '#1A2B22' }}>
-                <p className="font-display text-3xl font-light text-[#D4B483]">{score}</p>
-                <p className="text-xs tracking-[0.15em] uppercase text-white/40 mt-2 font-light">{label}</p>
+              <div key={label} className="text-center py-6 sm:py-8 px-2 sm:px-4" style={{ backgroundColor: '#1A2B22' }}>
+                <p className="font-display text-2xl sm:text-3xl font-light text-[#D4B483]">{score}</p>
+                <p className="text-[10px] sm:text-xs tracking-[0.1em] sm:tracking-[0.15em] uppercase text-white/40 mt-2 font-light leading-tight">{label}</p>
               </div>
             ))}
           </div>
@@ -115,12 +115,12 @@ export default function ReviewsPage() {
       </div>
 
       {/* Reviews grid */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 sm:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#E0D9CE]">
           {reviews.map((r, i) => (
             <div
               key={i}
-              className="p-10 hover:bg-white transition-colors duration-300"
+              className="p-8 sm:p-10 hover:bg-white transition-colors duration-300"
               style={{ backgroundColor: '#F7F4EF' }}
             >
               <Stars n={r.stars} />
@@ -137,28 +137,28 @@ export default function ReviewsPage() {
       </div>
 
       {/* CTA */}
-      <div style={{ backgroundColor: '#F2EFE9' }} className="py-20">
+      <div style={{ backgroundColor: '#F2EFE9' }} className="py-16 sm:py-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <div className="w-10 h-px bg-[#B8965A] mx-auto mb-8" />
           <h2
             className="font-display font-light text-[#1A2B22] mb-4"
-            style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)' }}
+            style={{ fontSize: 'clamp(1.5rem, 3vw, 2.5rem)' }}
           >
             Create your own memories at Nirvana
           </h2>
           <p className="text-sm text-[#7A6B55] font-light mb-10 leading-relaxed">
             Join the guests who've discovered why Nirvana is unlike any other cabin in Broken Bow.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link
               to="/book"
-              className="px-10 py-4 bg-[#1A2B22] text-white text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#2C4A38] transition-colors"
+              className="px-8 sm:px-10 py-4 bg-[#1A2B22] text-white text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#2C4A38] transition-colors text-center"
             >
               Reserve Your Stay
             </Link>
             <a
               href={`mailto:${property.email}`}
-              className="px-10 py-4 border border-[#1A2B22] text-[#1A2B22] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#1A2B22] hover:text-white transition-colors"
+              className="px-8 sm:px-10 py-4 border border-[#1A2B22] text-[#1A2B22] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#1A2B22] hover:text-white transition-colors text-center"
             >
               Send an Inquiry
             </a>

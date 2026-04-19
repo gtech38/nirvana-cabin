@@ -57,10 +57,10 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Wordmark — centered */}
+          {/* Wordmark — centered on desktop, left on mobile */}
           <Link
             to="/"
-            className={`font-display text-2xl font-light tracking-[0.12em] uppercase transition-colors duration-300 ${logoColor} hover:text-[#B8965A] absolute left-1/2 -translate-x-1/2`}
+            className={`font-display text-lg sm:text-xl lg:text-2xl font-light tracking-[0.08em] sm:tracking-[0.12em] uppercase whitespace-nowrap transition-colors duration-300 ${logoColor} hover:text-[#B8965A] lg:absolute lg:left-1/2 lg:-translate-x-1/2`}
           >
             {property.name}
           </Link>
@@ -92,7 +92,7 @@ export default function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className={`lg:hidden ml-auto p-2 transition-colors ${textColor}`}
+            className={`lg:hidden ml-auto p-3 -mr-1 transition-colors ${textColor}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >

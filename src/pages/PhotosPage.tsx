@@ -28,17 +28,17 @@ export default function PhotosPage() {
     <div style={{ backgroundColor: '#F7F4EF', paddingTop: '80px' }}>
 
       {/* Page header */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 sm:pt-16 pb-10 sm:pb-12">
         <p className="text-xs tracking-[0.22em] uppercase font-medium text-[#B8965A] mb-3">Gallery</p>
-        <div className="w-10 h-px bg-[#B8965A] mb-8" />
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="w-10 h-px bg-[#B8965A] mb-6 sm:mb-8" />
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
           <h1
             className="font-display font-light text-[#1A2B22] -mt-2"
-            style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}
+            style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
           >
             {filtered.length} photographs
           </h1>
-          <p className="text-sm text-[#7A6B55] font-light tracking-wide">Nirvana Cabin · Broken Bow, Oklahoma</p>
+          <p className="text-xs sm:text-sm text-[#7A6B55] font-light tracking-wide">Nirvana Cabin · Broken Bow, Oklahoma</p>
         </div>
       </div>
 
@@ -52,7 +52,7 @@ export default function PhotosPage() {
                 <button
                   key={key}
                   onClick={() => setActiveCategory(key)}
-                  className={`flex-shrink-0 px-5 py-4 text-xs tracking-[0.18em] uppercase font-medium transition-all border-b-2 ${
+                  className={`flex-shrink-0 px-4 sm:px-5 py-3 sm:py-4 text-[11px] sm:text-xs tracking-[0.18em] uppercase font-medium transition-all border-b-2 ${
                     activeCategory === key
                       ? 'text-[#1A2B22] border-[#B8965A]'
                       : 'text-[#B5A898] border-transparent hover:text-[#1A2B22]'
@@ -68,7 +68,7 @@ export default function PhotosPage() {
       </div>
 
       {/* Masonry grid */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12">
         <div className="columns-2 md:columns-3 lg:columns-4 gap-2 space-y-2">
           {filtered.map((img, idx) => (
             <div
@@ -124,11 +124,11 @@ export default function PhotosPage() {
           </button>
 
           {/* Image */}
-          <div className="max-w-5xl w-full px-16 lg:px-24" onClick={e => e.stopPropagation()}>
+          <div className="w-full px-6" onClick={e => e.stopPropagation()}>
             <img
               src={lightbox.img.url}
               alt={lightbox.img.caption}
-              className="w-full max-h-[80vh] object-contain"
+              className="w-full max-h-[85vh] object-contain"
             />
             <p className="text-white/40 text-xs tracking-[0.15em] text-center mt-4 font-light uppercase">
               {lightbox.img.caption}

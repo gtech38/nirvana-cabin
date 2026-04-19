@@ -10,7 +10,7 @@ export default function BookPage() {
     <div style={{ backgroundColor: '#F7F4EF', paddingTop: '80px' }}>
 
       {/* Page header */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-12 sm:pt-16 pb-12 sm:pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           <div>
             <p className="text-xs tracking-[0.22em] uppercase font-medium text-[#B8965A] mb-3">Reservations</p>
@@ -37,7 +37,7 @@ export default function BookPage() {
       </div>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-16 sm:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
 
           {/* Left: booking widget / setup */}
@@ -63,7 +63,7 @@ export default function BookPage() {
                   The inline booking calendar will appear here once your OwnerRez property ID is configured.
                   Add it to your <code className="text-xs bg-[#E0D9CE] px-1.5 py-0.5 text-[#1A2B22]">.env</code> file:
                 </p>
-                <div className="bg-[#1A2B22] text-white/80 p-5 text-xs font-mono mb-6 leading-relaxed">
+                <div className="bg-[#1A2B22] text-white/80 p-5 text-xs font-mono mb-6 leading-relaxed overflow-x-auto whitespace-nowrap">
                   <span className="text-[#B8965A]">VITE_OWNERREZ_PROPERTY_ID</span>=your_property_id_here
                 </div>
                 <p className="text-xs text-[#B5A898] font-light mb-8">
@@ -84,7 +84,7 @@ export default function BookPage() {
 
           {/* Right: contact + property details */}
           <div className="space-y-0">
-            <div className="border border-[#E0D9CE] p-8 hover:bg-white transition-colors"
+            <div className="border border-[#E0D9CE] p-6 sm:p-8 hover:bg-white transition-colors"
               style={{ backgroundColor: '#F7F4EF' }}>
               <p className="text-xs tracking-[0.18em] uppercase text-[#B8965A] mb-5">Call Us</p>
               <p className="text-xs text-[#7A6B55] font-light mb-3 leading-relaxed">
@@ -112,7 +112,7 @@ export default function BookPage() {
               </a>
             </div>
 
-            <div className="border border-t-0 border-[#E0D9CE] p-8" style={{ backgroundColor: '#F7F4EF' }}>
+            <div className="border border-t-0 border-[#E0D9CE] p-6 sm:p-8" style={{ backgroundColor: '#F7F4EF' }}>
               <p className="text-xs tracking-[0.18em] uppercase text-[#B8965A] mb-6">Property Details</p>
               {[
                 ['Bedrooms', '5'],
@@ -141,7 +141,7 @@ export default function BookPage() {
               { label: 'Instant Confirmation', body: 'Receive your booking confirmation and access details immediately by email.' },
               { label: 'Personal Service', body: 'Our team is available before, during, and after your stay for anything you need.' },
             ].map(({ label, body }) => (
-              <div key={label} className="p-10 text-center" style={{ backgroundColor: '#1A2B22' }}>
+              <div key={label} className="p-8 sm:p-10 text-center" style={{ backgroundColor: '#1A2B22' }}>
                 <div className="w-6 h-px bg-[#B8965A] mx-auto mb-6" />
                 <p className="text-xs tracking-[0.2em] uppercase text-[#B8965A] mb-3">{label}</p>
                 <p className="text-sm text-white/50 font-light leading-relaxed">{body}</p>

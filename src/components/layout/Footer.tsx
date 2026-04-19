@@ -4,12 +4,12 @@ import { property } from '../../data/property'
 export default function Footer() {
   return (
     <footer className="bg-[#1A2B22] text-white/70">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pt-16 sm:pt-20 pb-10">
 
         {/* Top: wordmark + tagline */}
-        <div className="text-center mb-16 pb-16 border-b border-white/10">
+        <div className="text-center mb-12 pb-12 sm:mb-16 sm:pb-16 border-b border-white/10">
           <p className="text-xs tracking-[0.25em] uppercase text-[#B8965A] mb-4">Broken Bow, Oklahoma</p>
-          <h2 className="font-display text-5xl font-light text-white tracking-[0.08em] uppercase mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-[0.08em] uppercase mb-4 break-words">
             {property.name}
           </h2>
           <p className="text-sm text-white/40 tracking-wide">
@@ -18,7 +18,7 @@ export default function Footer() {
         </div>
 
         {/* Links grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-12 sm:mb-16">
           <div>
             <p className="text-xs tracking-[0.2em] uppercase text-[#B8965A] mb-5">Explore</p>
             <ul className="space-y-3">
