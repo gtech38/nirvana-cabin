@@ -1,10 +1,37 @@
-import { getBookingWidgetUrl, getBookingPageUrl, OWNERREZ_PROPERTY_ID } from '../booking/ownerrez'
+import { useEffect } from 'react'
+import {
+  OWNERREZ_WIDGET_SCRIPT_URL,
+  OWNERREZ_PROPERTY_GUID,
+  OWNERREZ_CALENDAR_WIDGET_ID,
+  OWNERREZ_BOOKING_WIDGET_ID,
+  OWNERREZ_WIDGETS_CONFIGURED,
+  getBookingPageUrl,
+} from '../booking/ownerrez'
 import { property } from '../data/property'
 import { hotTubImage } from '../data/images'
 
+/**
+ * OwnerRez widget.js scans the DOM for <div class="ownerrez-widget"> elements
+ * on load. We inject a fresh <script> on mount so the scan runs every time
+ * the user navigates to /book (SPA navigation won't re-execute the script
+ * otherwise). The div elements must already be rendered before the script
+ * runs — useEffect guarantees post-render execution.
+ */
+function useOwnerRezWidget(enabled: boolean) {
+  useEffect(() => {
+    if (!enabled) return
+    const script = document.createElement('script')
+    script.src = OWNERREZ_WIDGET_SCRIPT_URL
+    script.async = true
+    document.body.appendChild(script)
+    return () => {
+      script.remove()
+    }
+  }, [])
+}
+
 export default function BookPage() {
-  const widgetUrl = getBookingWidgetUrl()
-  const bookingPageUrl = getBookingPageUrl()
+  useOwnerRezWidget(OWNERREZ_WIDGETS_CONFIGURED)
 
   return (
     <div style={{ backgroundColor: '#F7F4EF', paddingTop: '80px' }}>
@@ -40,37 +67,66 @@ export default function BookPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-16 sm:pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start">
 
-          {/* Left: booking widget / setup */}
-          <div className="lg:col-span-2">
-            {OWNERREZ_PROPERTY_ID ? (
-              <div className="overflow-hidden border border-[#E0D9CE]">
-                <iframe
-                  src={widgetUrl}
-                  title="Book Nirvana Cabin"
-                  className="w-full border-none"
-                  style={{ minHeight: '640px' }}
-                  allow="payment"
-                />
-              </div>
+          {/* Left: OwnerRez widgets */}
+          <div className="lg:col-span-2 space-y-10">
+
+            {OWNERREZ_WIDGETS_CONFIGURED ? (
+              <>
+                {/* Availability calendar */}
+                <section>
+                  <p className="text-xs tracking-[0.2em] uppercase font-medium text-[#B8965A] mb-3">Availability</p>
+                  <div className="w-8 h-px bg-[#B8965A] mb-6" />
+                  <h2 className="font-display text-2xl font-light text-[#1A2B22] mb-6">
+                    Available dates
+                  </h2>
+                  <p className="text-xs text-[#7A6B55] font-light mb-5 leading-relaxed">
+                    Scroll below the calendar to book or send an inquiry.
+                  </p>
+                  <div className="border border-[#E0D9CE] p-4 sm:p-6" style={{ backgroundColor: '#FFFFFF' }}>
+                    <div
+                      className="ownerrez-widget"
+                      data-widgetid={OWNERREZ_CALENDAR_WIDGET_ID}
+                      data-propertyid={OWNERREZ_PROPERTY_GUID}
+                      data-widget-type="Multi Month Calendar - Multiple Month Calendar"
+                    />
+                  </div>
+                </section>
+
+                {/* Booking / Inquiry form */}
+                <section>
+                  <p className="text-xs tracking-[0.2em] uppercase font-medium text-[#B8965A] mb-3">Reserve</p>
+                  <div className="w-8 h-px bg-[#B8965A] mb-6" />
+                  <h2 className="font-display text-2xl font-light text-[#1A2B22] mb-6">
+                    Book or send an inquiry
+                  </h2>
+                  <div className="border border-[#E0D9CE] p-4 sm:p-6" style={{ backgroundColor: '#FFFFFF' }}>
+                    <div
+                      className="ownerrez-widget"
+                      data-widgetid={OWNERREZ_BOOKING_WIDGET_ID}
+                      data-propertyid={OWNERREZ_PROPERTY_GUID}
+                      data-widget-type="Booking/Inquiry"
+                    />
+                  </div>
+                  <p className="text-xs text-[#7A6B55] font-light italic mt-5 leading-relaxed">
+                    Pricing shown includes all fees and taxes. You will receive an itemized invoice at
+                    the time of booking and on your quote if you send an inquiry.
+                  </p>
+                </section>
+              </>
             ) : (
               <div className="border border-[#E0D9CE] p-10" style={{ backgroundColor: '#F2EFE9' }}>
                 <p className="text-xs tracking-[0.2em] uppercase text-[#B8965A] mb-3">Setup Required</p>
                 <div className="w-8 h-px bg-[#B8965A] mb-6" />
                 <h2 className="font-display text-2xl font-light text-[#1A2B22] mb-4">
-                  OwnerRez Booking Widget
+                  Booking widgets not configured
                 </h2>
                 <p className="text-sm text-[#7A6B55] font-light leading-relaxed mb-6">
-                  The inline booking calendar will appear here once your OwnerRez property ID is configured.
-                  Add it to your <code className="text-xs bg-[#E0D9CE] px-1.5 py-0.5 text-[#1A2B22]">.env</code> file:
-                </p>
-                <div className="bg-[#1A2B22] text-white/80 p-5 text-xs font-mono mb-6 leading-relaxed overflow-x-auto whitespace-nowrap">
-                  <span className="text-[#B8965A]">VITE_OWNERREZ_PROPERTY_ID</span>=your_property_id_here
-                </div>
-                <p className="text-xs text-[#B5A898] font-light mb-8">
-                  Find your ID in OwnerRez → Properties → [Nirvana] → Settings
+                  The inline booking calendar will appear here once the OwnerRez widget IDs
+                  are set in the environment. Copy <code className="text-xs bg-[#E0D9CE] px-1.5 py-0.5 text-[#1A2B22]">.env.example</code> to
+                  <code className="text-xs bg-[#E0D9CE] px-1.5 py-0.5 text-[#1A2B22] ml-1">.env</code> and fill in the required values.
                 </p>
                 <a
-                  href={bookingPageUrl}
+                  href={getBookingPageUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 text-xs tracking-[0.2em] uppercase font-medium text-[#B8965A] hover:gap-5 transition-all duration-300"
@@ -98,7 +154,7 @@ export default function BookPage() {
               </a>
             </div>
 
-            <div className="border border-t-0 border-[#E0D9CE] p-8 hover:bg-white transition-colors"
+            <div className="border border-t-0 border-[#E0D9CE] p-6 sm:p-8 hover:bg-white transition-colors"
               style={{ backgroundColor: '#F7F4EF' }}>
               <p className="text-xs tracking-[0.18em] uppercase text-[#B8965A] mb-5">Email</p>
               <p className="text-xs text-[#7A6B55] font-light mb-3 leading-relaxed">
